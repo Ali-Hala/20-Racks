@@ -37,6 +37,7 @@ __published:	// IDE-managed Components
 	TEdit *AccountName;
 	TEdit *StartAmnt;
 	TButton *Add;
+	TLabel *warningLabel;
 	void __fastcall AddClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations

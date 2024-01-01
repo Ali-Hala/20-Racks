@@ -1,0 +1,56 @@
+object Form6: TForm6
+  Left = 0
+  Top = 0
+  Caption = 'E'
+  ClientHeight = 152
+  ClientWidth = 212
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object NameLabel: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    Text = 'Name:'
+    TabOrder = 0
+  end
+  object AmountLabel: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 56.000000000000000000
+    Text = 'Starting Amount:'
+    TabOrder = 1
+  end
+  object AccountName: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 2
+    Position.X = 8.000000000000000000
+    Position.Y = 26.000000000000000000
+    Size.Width = 196.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object StartAmnt: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 3
+    Position.X = 8.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 196.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Add: TButton
+    Position.X = 8.000000000000000000
+    Position.Y = 102.000000000000000000
+    TabOrder = 4
+    Text = 'Add'
+    OnClick = AddClick
+  end
+  object warningLabel: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 128.000000000000000000
+    Size.Width = 196.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+  end
+end
