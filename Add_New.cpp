@@ -70,6 +70,8 @@ __fastcall TForm6::TForm6(TComponent* Owner)
 void __fastcall TForm6::AddClick(TObject *Sender)
 {
 	try{
+		if (StrToFloat(StartAmnt->Text) < 0)
+			throw;
 		ofstream Account_List("List.txt", std::ios_base::app);
 		Account New(ConvertString(AccountName->Text), StrToFloat(StartAmnt->Text));
 		New.out(Account_List);
@@ -77,7 +79,7 @@ void __fastcall TForm6::AddClick(TObject *Sender)
 		Close();
 	}
 	catch (...){
-
+		warningLabel->Text = "Enter a valid amount";
 	}
 }
 //---------------------------------------------------------------------------
