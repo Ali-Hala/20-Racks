@@ -35,12 +35,14 @@ using namespace std;
 
 	}
 
-	void Account::In(ifstream & fin)
+	bool Account::In(ifstream & fin)
 	{
-		 fin >> Name >> amount >> num_transactions;
-		 for (int i = 0; i < num_transactions; i++) {
-			fin >> transactionNames[i] >> transactionAmnts[i] >> transactionDates[i];
-		 }
+		 if (fin >> Name >> amount >> num_transactions)
+			 for (int i = 0; i < num_transactions; i++)
+				fin >> transactionNames[i] >> transactionAmnts[i] >> transactionDates[i];
+			 return 1;
+		 return 0;
+
 	}
 
 	void Account::transaction(std::string t_name, double t_amount, std::string t_date)
@@ -71,7 +73,7 @@ void __fastcall TForm6::AddClick(TObject *Sender)
 {
 	try{
 		if (StrToFloat(StartAmnt->Text) < 0)
-			throw;
+			throw 505;
 		ofstream Account_List("List.txt", std::ios_base::app);
 		Account New(ConvertString(AccountName->Text), StrToFloat(StartAmnt->Text));
 		New.out(Account_List);

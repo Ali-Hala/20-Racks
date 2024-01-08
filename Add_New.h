@@ -25,9 +25,11 @@ class Account {
 		Account();
 		Account(std::string Name_i, double amount_i);
 		void out(ofstream & fout);
-		void In(ifstream & fin);
+		bool In(ifstream & fin);
         void transaction(std::string t_Name, double t_amount, std::string t_date);
 };
+
+
 
 class TForm6 : public TForm
 {

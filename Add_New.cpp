@@ -35,12 +35,14 @@ using namespace std;
 
 	}
 
-	void Account::In(ifstream & fin)
+	bool Account::In(ifstream & fin)
 	{
-		 fin >> Name >> amount >> num_transactions;
-		 for (int i = 0; i < num_transactions; i++) {
-			fin >> transactionNames[i] >> transactionAmnts[i] >> transactionDates[i];
-		 }
+		 if (fin >> Name >> amount >> num_transactions)
+			 for (int i = 0; i < num_transactions; i++)
+				fin >> transactionNames[i] >> transactionAmnts[i] >> transactionDates[i];
+			 return 1;
+		 return 0;
+
 	}
 
 	void Account::transaction(std::string t_name, double t_amount, std::string t_date)
