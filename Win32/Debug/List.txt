@@ -1,2 +1,5 @@
-feet 5 
-fing 90 
+foot 13 0 
+Ali 5000 0 
+jink 70 0 
+huncho 5 0 
+janko 67 0 

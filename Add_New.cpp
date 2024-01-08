@@ -7,6 +7,7 @@
 #pragma hdrstop
 
 #include "Add_New.h"
+#include "menu.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.fmx"
@@ -27,7 +28,7 @@ using namespace std;
     }
 	void Account::out(ofstream & fout)
 	{
-		fout << Name << " " << amount << " ";
+		fout << Name << " " << amount << " " << num_transactions << " ";
 		for (int i = 0 ; i < num_transactions; i++) {
 			fout << transactionNames[i] << " " << transactionAmnts[i] << " " << transactionDates[i] << " ";
 		}
@@ -38,9 +39,11 @@ using namespace std;
 	bool Account::In(ifstream & fin)
 	{
 		 if (fin >> Name >> amount >> num_transactions)
+		 {
 			 for (int i = 0; i < num_transactions; i++)
 				fin >> transactionNames[i] >> transactionAmnts[i] >> transactionDates[i];
 			 return 1;
+		 }
 		 return 0;
 
 	}
@@ -78,6 +81,8 @@ void __fastcall TForm6::AddClick(TObject *Sender)
 		Account New(ConvertString(AccountName->Text), StrToFloat(StartAmnt->Text));
 		New.out(Account_List);
 		Account_List.close();
+		Form5->AccountList->Clear();
+        loadAccounts(Form5->AccountList);
 		Close();
 	}
 	catch (...){

@@ -12,6 +12,8 @@
 #include <FMX.StdCtrls.hpp>
 #include <FMX.Types.hpp>
 //---------------------------------------------------------------------------
+System::UnicodeString StrToUnicode(std::string stdString);
+void loadAccounts(TListBox *List);
 class TForm5 : public TForm
 {
 __published:	// IDE-managed Components
@@ -19,6 +21,7 @@ __published:	// IDE-managed Components
 	TListBox *AccountList;
 	TButton *AddButton;
 	void __fastcall AddButtonClick(TObject *Sender);
+
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm5(TComponent* Owner);

@@ -1,0 +1,91 @@
+//---------------------------------------------------------------------------
+
+#include <fmx.h>
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+#pragma hdrstop
+
+#include "Add_New.h"
+#include "menu.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.fmx"
+TForm6 *Form6;
+using namespace std;
+//---------------------------------------------------------------------------
+
+
+	Account::Account() {
+		amount = 0;
+		num_transactions = 0;
+	}
+	Account::Account(std::string Name_i, double amount_i)
+	{
+		Name = Name_i;
+		amount = amount_i;
+		num_transactions = 0;
+    }
+	void Account::out(ofstream & fout)
+	{
+		fout << Name << " " << amount << " " << num_transactions << " ";
+		for (int i = 0 ; i < num_transactions; i++) {
+			fout << transactionNames[i] << " " << transactionAmnts[i] << " " << transactionDates[i] << " ";
+		}
+		fout << endl;
+
+	}
+
+	bool Account::In(ifstream & fin)
+	{
+		 if (fin >> Name >> amount >> num_transactions)
+		 {
+			 for (int i = 0; i < num_transactions; i++)
+				fin >> transactionNames[i] >> transactionAmnts[i] >> transactionDates[i];
+			 return 1;
+		 }
+		 return 0;
+
+	}
+
+	void Account::transaction(std::string t_name, double t_amount, std::string t_date)
+	{
+		transactionNames.push_back(t_name);
+		transactionAmnts.push_back(t_amount);
+		transactionDates.push_back(t_date);
+		num_transactions++;
+		amount += t_amount;
+	}
+
+std::string ConvertString(System::UnicodeString unicodeString)
+{
+    AnsiString ansiString = unicodeString; // Convert UnicodeString to AnsiString
+    return std::string(ansiString.c_str()); // Convert AnsiString to std::string
+}
+
+
+
+
+
+__fastcall TForm6::TForm6(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm6::AddClick(TObject *Sender)
+{
+	try{
+		if (StrToFloat(StartAmnt->Text) < 0)
+			throw 505;
+		ofstream Account_List("List.txt", std::ios_base::app);
+		Account New(ConvertString(AccountName->Text), StrToFloat(StartAmnt->Text));
+		New.out(Account_List);
+		Account_List.close();
+        Form5->Show();
+		Close();
+	}
+	catch (...){
+		warningLabel->Text = "Enter a valid amount";
+	}
+}
+//---------------------------------------------------------------------------
